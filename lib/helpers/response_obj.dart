@@ -1,12 +1,16 @@
-class ResponseObj {
+class ResponseObj{
+  MessageState dataState;
   dynamic data;
-  MsgStat message;
-
-  ResponseObj({this.data, this.message});
+  ResponseObj();
 }
-
-enum MsgStat {
+enum MessageState{
   loading,
   data,
   serverError,
+  userError,
+}
+enum ErrorState{
+  clientError,
+  serverError,
+  redirectError,
 }

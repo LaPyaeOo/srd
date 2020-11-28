@@ -1,22 +1,22 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main(){
+  runApp(
+    MaterialApp(
+      home: BlogApp(),
+    )
+  );
+}
 
-class MyApp extends StatelessWidget {
+class BlogApp extends StatefulWidget {
+  @override
+  _BlogAppState createState() => _BlogAppState();
+}
+
+class _BlogAppState extends State<BlogApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
-    );
+    return Scaffold();
   }
 }
