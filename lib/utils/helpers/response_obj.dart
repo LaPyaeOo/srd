@@ -1,16 +1,17 @@
 class ResponseObj{
-  MessageState dataState;
+  MsgState msgState;
+  ErrorState errorState;
   dynamic data;
-  ResponseObj();
+  ResponseObj({data,msgState,errorState});
 }
-enum MessageState{
+enum MsgState{
   loading,
   data,
-  serverError,
-  userError,
+  error,
 }
 enum ErrorState{
   clientError,
+  fileNotFoundError,
   serverError,
   redirectError,
 }
