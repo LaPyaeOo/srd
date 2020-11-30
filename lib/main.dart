@@ -1,9 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:srd_frame/config/themes.dart';
+
+import 'config/size_config.dart';
+import 'modules/login_screen/login_view.dart';
 
 void main(){
   runApp(
     MaterialApp(
+      theme: themeData(),
       home: BlogApp(),
     )
   );
@@ -17,6 +22,7 @@ class BlogApp extends StatefulWidget {
 class _BlogAppState extends State<BlogApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    SizeConfig().init(context);
+    return LoginView();
   }
 }
