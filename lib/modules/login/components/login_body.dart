@@ -4,7 +4,6 @@ import 'package:srd_frame/modules/login/components/login_form.dart';
 import 'package:srd_frame/widgets/socialButton_widget.dart';
 
 class LoginBody extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

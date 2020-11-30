@@ -1,5 +1,5 @@
 class ResponseObj{
-  MsgState msgState;
+  MsgState message;
   ErrorState errorState;
   dynamic data;
   ResponseObj({data,msgState,errorState});

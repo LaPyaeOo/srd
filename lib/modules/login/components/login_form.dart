@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:srd_frame/config/size_config.dart';
 import 'package:srd_frame/config/themes.dart';
+import 'package:srd_frame/modules/login/components/login_bloc.dart';
+import 'package:srd_frame/modules/login_success/login_succ_view.dart';
+import 'package:srd_frame/utils/helpers/response_obj.dart';
 import 'package:srd_frame/widgets/styling_button_widget.dart';
 
 class LoginForm extends StatefulWidget {
@@ -13,6 +16,19 @@ class _LoginFormState extends State<LoginForm> {
   bool remember = false;
   String email;
   String password;
+
+  LoginBloc loginBloc;
+  
+  @override
+  void initState() {
+    loginBloc = LoginBloc();
+    loginBloc.loginStream().listen((ResponseObj responseObj) {
+      if(responseObj.message == MsgState.data){
+        Navigator.of(context).pushNamed(LoginSuccView.routeName);
+      }
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -49,7 +65,16 @@ class _LoginFormState extends State<LoginForm> {
           StylingButton(
             text: "Continue",
             onPress: (){
-
+              print('LoginButton');
+              loginBloc.loginReq({
+                "email": "mtk@gmail.com",
+                "password": "password",
+              });
+              loginBloc.loginStream().listen((ResponseObj responseObj) {
+                if(responseObj.message == MsgState.data){
+                  Navigator.of(context).pushNamed(LoginSuccView.routeName);
+                }
+              });
             },
           ),
         ],

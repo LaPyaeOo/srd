@@ -1,6 +1,6 @@
 const BASE_URL = 'http://testapi.eazytechmm.com/';
 
-const API_URL = BASE_URL+'api';
+const API_URL = BASE_URL+'api/';
 
 const LOGIN_URL = API_URL + 'login';
 
