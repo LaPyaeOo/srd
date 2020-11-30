@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:srd_frame/config/size_config.dart';
+import 'package:srd_frame/modules/login/components/login_form.dart';
 import 'package:srd_frame/widgets/socialButton_widget.dart';
 
 class LoginBody extends StatelessWidget {
-  static String routeName = './login';
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,10 @@ class LoginBody extends StatelessWidget {
                 "Sign in with your email and password  \nor continue with social media",
                 textAlign: TextAlign.center,
               ),
+              SizedBox(
+                height: SizeConfig.screenHeight*0.08,
+              ),
+              LoginForm(),
               SizedBox(
                 height: SizeConfig.screenHeight*0.08,
               ),
