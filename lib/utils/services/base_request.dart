@@ -9,11 +9,11 @@ enum ReqType{
 
 class BaseRequest{
   void getReq({@required String url,Map<String, dynamic>dataParameter, Function dataCallback, Function errorCallback})async{
-    mainReq(ReqType.getType,url: url,dataParameter: dataParameter);
+    mainReq(ReqType.getType,url: url,dataParameter: dataParameter, dataCallback: dataCallback, errorCallback: errorCallback);
   }
 
   void postReq({@required String url,Map<String, dynamic>dataParameter,FormData formBody,Function dataCallback, Function errorCallback})async{
-    mainReq(ReqType.postType, url: url,dataParameter: dataParameter,formData: formBody);
+    mainReq(ReqType.postType, url: url,dataParameter: dataParameter,formData: formBody, dataCallback: dataCallback, errorCallback: errorCallback);
   }
 
   void mainReq(ReqType reqType,{@required String url, Map<String, dynamic>dataParameter, Function dataCallback, FormData formData, Function errorCallback})async{
