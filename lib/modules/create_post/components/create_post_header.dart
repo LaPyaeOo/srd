@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:srd_frame/config/size_config.dart';
 import 'package:srd_frame/config/themes.dart';
-import 'package:srd_frame/modules/home/home_view.dart';
 import 'package:srd_frame/widgets/header_button.dart';
 import 'package:srd_frame/widgets/styling_button_widget.dart';
 
