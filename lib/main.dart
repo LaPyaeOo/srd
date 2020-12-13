@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:srd_frame/config/app_routes.dart';
 import 'package:srd_frame/config/themes.dart';
-import 'config/size_config.dart';
 import 'modules/login/login_view.dart';
 
-void main(){
-  runApp(
-    MaterialApp(
-      theme: themeData(),
-      home: BlogApp(),
-    )
-  );
+void main() {
+  runApp(BlogApp());
 }
 
 class BlogApp extends StatefulWidget {
@@ -20,7 +15,11 @@ class BlogApp extends StatefulWidget {
 class _BlogAppState extends State<BlogApp> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    return LoginView();
+    return MaterialApp(
+      //home: LoginView(),
+      initialRoute: LoginView.routeName,
+      routes: routes,
+      theme: themeData(),
+    );
   }
 }
