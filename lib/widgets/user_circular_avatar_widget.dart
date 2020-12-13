@@ -7,7 +7,7 @@ class UserCircularAvt extends StatelessWidget {
   final String svgIcon;
   final String statusTxt;
   final Function onUploadPhoto;
-  const UserCircularAvt({@required this.svgIcon,this.statusTxt,this.onUploadPhoto,Key key}): super(key: key);
+  const UserCircularAvt({this.statusTxt,this.onUploadPhoto,Key key,@required this.svgIcon,}): super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
