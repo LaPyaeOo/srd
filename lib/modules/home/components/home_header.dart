@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:srd_frame/modules/create_post/create_post_view.dart';
 import 'package:srd_frame/widgets/header_button.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -12,9 +13,12 @@ class HomeHeader extends StatelessWidget {
           HeaderButton(
             icon: 'assets/icons/User.svg',
           ),
-          Text('Home Blog',style: TextStyle(fontSize: 18.0),),
+          Text('Home Blog', style: TextStyle(fontSize: 18.0),),
           HeaderButton(
-              icon: 'assets/icons/Plus_Icon.svg',
+            icon: 'assets/icons/Plus_Icon.svg',
+            onPressed:(){
+              Navigator.pushNamed(context, CreatePostView.routeName);
+            },
           )
         ],
       ),
