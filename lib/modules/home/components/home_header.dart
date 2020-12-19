@@ -14,7 +14,7 @@ class HomeHeader extends StatelessWidget {
           HeaderButton(
             icon: 'assets/icons/User.svg',
             onPressed: (){
-              Navigator.pushNamed(context, ProfileView.routName);
+              Navigator.pushNamed(context, ProfileView.routeName);
             },
           ),
           Text('Home Blog', style: TextStyle(fontSize: 18.0),),
