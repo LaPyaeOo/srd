@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:srd_frame/config/app_routes.dart';
 import 'package:srd_frame/config/themes.dart';
-import 'modules/login/login_view.dart';
+import 'modules/splash/splash_view.dart';
 
 void main() {
   runApp(BlogApp());
@@ -17,7 +17,7 @@ class _BlogAppState extends State<BlogApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       //home: LoginView(),
-      initialRoute: LoginView.routeName,
+      initialRoute: SplashView.routeName,
       routes: routes,
       theme: themeData(),
     );
