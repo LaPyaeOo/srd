@@ -1,6 +1,4 @@
 import'package:flutter/material.dart';
-import 'package:srd_frame/config/size_config.dart';
-
 import 'components/register_body.dart';
 
 class RegisterView extends StatelessWidget {
@@ -8,9 +6,6 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
       body: RegisterBody(),
     );
   }

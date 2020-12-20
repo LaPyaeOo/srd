@@ -10,7 +10,8 @@ class _SplashBodyState extends State<SplashBody> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 2),(){
-      Navigator.pushNamed(context, LoginView.routeName);
+      //Navigator.pushNamed(context, LoginView.routeName);
+      Navigator.pushNamedAndRemoveUntil(context, LoginView.routeName, (route) => false);
     });
     super.initState();
   }

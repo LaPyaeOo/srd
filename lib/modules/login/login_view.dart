@@ -9,9 +9,6 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Center(child: Text("")),
-      ),
       body: LoginBody(),
     );
   }
