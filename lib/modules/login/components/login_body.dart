@@ -4,6 +4,8 @@ import 'package:srd_frame/modules/login/components/login_form.dart';
 import 'package:srd_frame/widgets/socialButton_widget.dart';
 
 class LoginBody extends StatelessWidget {
+  final GlobalKey<ScaffoldState>scaffoldKey;
+  const LoginBody({Key key,this.scaffoldKey}): super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,7 +34,7 @@ class LoginBody extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.screenHeight * 0.08,
               ),
-              LoginForm(),
+              LoginForm(scaffoldKey: this.scaffoldKey,),
               SizedBox(
                 height: SizeConfig.screenHeight * 0.08,
               ),

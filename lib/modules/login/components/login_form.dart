@@ -5,11 +5,14 @@ import 'package:srd_frame/modules/home/home_view.dart';
 import 'package:srd_frame/modules/login/components/login_bloc.dart';
 import 'package:srd_frame/modules/login/login_view.dart';
 import 'package:srd_frame/modules/register/register_view.dart';
+import 'package:srd_frame/utils/app_utils.dart';
 import 'package:srd_frame/utils/helpers/response_obj.dart';
 import 'package:srd_frame/utils/services/shared_preferences.dart';
 import 'package:srd_frame/widgets/styling_button_widget.dart';
 
 class LoginForm extends StatefulWidget {
+   final GlobalKey<ScaffoldState>scaffoldKey;
+  const LoginForm({Key key,this.scaffoldKey}): super(key: key);
   @override
   _LoginFormState createState() => _LoginFormState();
 }
@@ -18,8 +21,10 @@ class _LoginFormState extends State<LoginForm> {
   LoginBloc loginBloc;
   final _formKey = GlobalKey<FormState>();
   bool remember = false;
-  TextEditingController emailTxC = TextEditingController(text: 'mtk@gmail.com');
-  TextEditingController passTxC = TextEditingController(text: 'password');
+  TextEditingController emailTxC = TextEditingController();
+  //text: 'mtk@gmail.com'
+  TextEditingController passTxC = TextEditingController();
+  //text: 'password'
   String email;
   String password;
   Map<String, dynamic> loginDBody;
@@ -80,17 +85,7 @@ class _LoginFormState extends State<LoginForm> {
           StylingButton(
             text: "Login",
             color: custPrimaryColor,
-            onPress: (){
-               email=emailTxC.text;
-               print(email);
-               password = passTxC.text;
-               print(password);
-               loginDBody = {
-                 'email': email,
-                 'password': password
-               };
-               loginBloc.loginReq(loginDBody);
-            },
+            onPress: checkRegister,
           ),
           SizedBox(
             height: getScreenHeightRation(20.0),
@@ -127,5 +122,18 @@ class _LoginFormState extends State<LoginForm> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
     );
+  }
+
+  checkRegister(){
+    if(emailTxC.text.isEmpty || passTxC.text.isEmpty){
+      AppUtils.showSnackBar(widget.scaffoldKey.currentState,bgColor: Colors.black,contentText: 'Enter email and password');
+    }
+    else{
+      loginDBody = {
+        'email': emailTxC.text,
+        'password': passTxC.text,
+      };
+      loginBloc.loginReq(loginDBody);
+    }
   }
 }

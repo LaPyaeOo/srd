@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:srd_frame/config/size_config.dart';
 import 'package:srd_frame/config/themes.dart';
 import 'package:srd_frame/modules/login/login_view.dart';
-import 'package:srd_frame/utils/services/shared_preferences.dart';
 import 'package:srd_frame/widgets/post_widget.dart';
 import 'package:srd_frame/widgets/styling_button_widget.dart';
 import 'package:srd_frame/widgets/user_circular_avatar_widget.dart';
@@ -92,9 +92,10 @@ class _ProfileContentState extends State<ProfileContent> {
     );
   }
 
-  logout(){
+  logout()async{
+      final pref = await SharedPreferences.getInstance();
+      await pref.clear();
     //Navigator.pushNamed(context, LoginView.routeName);
       Navigator.of(context).pushNamedAndRemoveUntil(LoginView.routeName, (route) => false);
-    SharedPrefService prefService = SharedPrefService();
   }
 }
