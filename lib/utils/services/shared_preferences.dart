@@ -12,6 +12,7 @@ class SharedPrefService{
   //Reuse sotre string
   static Future<String>getStringData({String key})async{
     SharedPreferences sharedPrefer = await SharedPreferences.getInstance();
-    return sharedPrefer.get(key);
+    String tokenString = sharedPrefer.get(key);
+    return tokenString;
   }
 }

@@ -3,7 +3,6 @@ import 'package:srd_frame/config/size_config.dart';
 import 'package:srd_frame/config/themes.dart';
 import 'package:srd_frame/modules/home/home_view.dart';
 import 'package:srd_frame/modules/login/components/login_bloc.dart';
-import 'package:srd_frame/modules/login/login_view.dart';
 import 'package:srd_frame/modules/register/register_view.dart';
 import 'package:srd_frame/utils/app_utils.dart';
 import 'package:srd_frame/utils/helpers/response_obj.dart';
@@ -38,13 +37,14 @@ class _LoginFormState extends State<LoginForm> {
     loginBloc.loginStream().listen((ResponseObj resObj) {
       if(resObj.message == MsgState.data){
         SharedPrefService.getStringData(key: SharedPrefService.token).then((tokenValue){
-          if(tokenValue.toString() != 'null' || tokenValue != null){
-            Navigator.pushNamed(context, HomeView.routeName);
-          }
-          else{
-            Navigator.pushNamed(context, LoginView.routeName);
+          if(tokenValue.toString() != 'null' && tokenValue != null){
+            Navigator.pushNamedAndRemoveUntil(context, HomeView.routeName, (route) => false);
           }
         });
+      }
+      if(resObj.message == MsgState.error){
+        AppUtils.showSnackBar(widget.scaffoldKey.currentState,bgColor: Colors.red,contentText: 'Something Wrong');
+        //Navigator.pushNamedAndRemoveUntil(context, LoginView.routeName, (route) => false);
       }
     });
     super.initState();
@@ -85,7 +85,7 @@ class _LoginFormState extends State<LoginForm> {
           StylingButton(
             text: "Login",
             color: custPrimaryColor,
-            onPress: checkRegister,
+            onPress: checkLogin,
           ),
           SizedBox(
             height: getScreenHeightRation(20.0),
@@ -124,7 +124,7 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  checkRegister(){
+  checkLogin(){
     if(emailTxC.text.isEmpty || passTxC.text.isEmpty){
       AppUtils.showSnackBar(widget.scaffoldKey.currentState,bgColor: Colors.black,contentText: 'Enter email and password');
     }

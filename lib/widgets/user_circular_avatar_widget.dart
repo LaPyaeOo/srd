@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:srd_frame/config/size_config.dart';
@@ -6,8 +8,9 @@ import 'package:srd_frame/config/themes.dart';
 class UserCircularAvt extends StatelessWidget {
   final String svgIcon;
   final String statusTxt;
+  final File imageFile;
   final Function onUploadPhoto;
-  const UserCircularAvt({this.statusTxt,this.onUploadPhoto,Key key,@required this.svgIcon,}): super(key: key);
+  const UserCircularAvt({this.statusTxt,this.onUploadPhoto,this.imageFile, Key key, this.svgIcon = "assets/icons/User.svg",}): super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -22,9 +25,14 @@ class UserCircularAvt extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(svgIcon,color: custPrimaryColor,),
-            SizedBox(height: getScreenHeightRation(5),),
-            Text(statusTxt,textAlign: TextAlign.center,),
+            imageFile != null ? Image.file(imageFile) :
+            Column(
+              children: [
+                SvgPicture.asset(svgIcon,color: custPrimaryColor,),
+                SizedBox(height: getScreenHeightRation(5),),
+                Text(statusTxt,textAlign: TextAlign.center,),
+              ],
+            )
           ],
         ),
       ),

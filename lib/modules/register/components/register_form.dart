@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:srd_frame/config/size_config.dart';
 import 'package:srd_frame/config/themes.dart';
 import 'package:srd_frame/widgets/socialButton_widget.dart';
@@ -11,16 +14,31 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+
+  File _image;
+  final picker = ImagePicker();
+
+  Future getImage() async{
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      if(pickedFile != null){
+        _image = File(pickedFile.path);
+      }
+      else{
+        print('No image');
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(height: getScreenHeightRation(40),),
         UserCircularAvt(
+          imageFile: _image,
           svgIcon: "assets/icons/User.svg",
           statusTxt: 'Upload\nphoto',
-          onUploadPhoto: (){
-          },
+          onUploadPhoto: getImage,
         ),
         SizedBox(height: getScreenHeightRation(50),),
         buildNameField(),
