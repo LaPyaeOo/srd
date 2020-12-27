@@ -136,4 +136,9 @@ class _LoginFormState extends State<LoginForm> {
       loginBloc.loginReq(loginDBody);
     }
   }
+  @override
+  void dispose() {
+    loginBloc.disposeBloc();
+    super.dispose();
+  }
 }

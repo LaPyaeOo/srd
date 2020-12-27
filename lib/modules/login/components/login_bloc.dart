@@ -12,7 +12,6 @@ class LoginBloc extends BaseRequest{
   loginReq(Map<String, dynamic> dataMap){
     postReq(url: LOGIN_URL, dataParameter: dataMap, dataCallback: (ResponseObj resObj){
       print('Data State =>=>=> ${resObj.data}');
-      print('Token =>=>=> ${resObj.data["token"]}');
       SharedPrefService.setStringData(key: SharedPrefService.token, value: resObj.data["token"]);
       loginController.sink.add(resObj);
     },errorCallback: (ResponseObj resObj){

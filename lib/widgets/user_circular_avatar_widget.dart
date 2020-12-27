@@ -10,30 +10,50 @@ class UserCircularAvt extends StatelessWidget {
   final String statusTxt;
   final File imageFile;
   final Function onUploadPhoto;
-  const UserCircularAvt({this.statusTxt,this.onUploadPhoto,this.imageFile, Key key, this.svgIcon = "assets/icons/User.svg",}): super(key: key);
+
+  const UserCircularAvt({
+    this.statusTxt,
+    this.onUploadPhoto,
+    this.imageFile,
+    Key key,
+    this.svgIcon = "assets/icons/User.svg",
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onUploadPhoto,
-      child: Container(
-        width: double.infinity,
-        height: getScreenHeightRation(100.0),
-        decoration: BoxDecoration(
-          color: Color(0xFFF5F6F9),
-          shape: BoxShape.circle,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            imageFile != null ? Image.file(imageFile) :
-            Column(
+    return Container(
+      width: getScreenWidthRation(120),
+      height: getScreenHeightRation(120.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(120),
+        color: Color(0xFFF5F6F9),
+        //shape: BoxShape.circle,
+      ),
+      //ClipOval(child: Image.file(imageFile,fit: BoxFit.cover,),)
+      child: Material(
+        elevation: 4.0,
+        shape: CircleBorder(),
+        clipBehavior: Clip.hardEdge,
+        child: InkWell(
+          onTap: onUploadPhoto,
+          child: imageFile != null ? Ink.image(image : FileImage(imageFile),fit: BoxFit.cover,): Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(svgIcon,color: custPrimaryColor,),
-                SizedBox(height: getScreenHeightRation(5),),
-                Text(statusTxt,textAlign: TextAlign.center,),
+                SvgPicture.asset(
+                  svgIcon,
+                  color: custPrimaryColor,
+                ),
+                SizedBox(
+                  height: getScreenHeightRation(5),
+                ),
+                Text(
+                  statusTxt,
+                  textAlign: TextAlign.center,
+                ),
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );
