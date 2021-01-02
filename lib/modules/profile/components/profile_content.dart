@@ -55,8 +55,20 @@ class _ProfileContentState extends State<ProfileContent> {
                 );
               }
               else if(resData.message == MsgState.error){
-                return Center(
-                  child: Text('Something was wrong'),
+                return Container(
+                  width: double.infinity,
+                  height: getScreenHeightRation(250.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: Colors.black.withOpacity(0.1),
+                    ),
+                    color: custSecondaryColor.withOpacity(0.4),
+                    //shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text('Something was wrong'),
+                  ),
                 );
               }
               else{
