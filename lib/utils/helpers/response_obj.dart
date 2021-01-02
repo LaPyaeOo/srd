@@ -2,7 +2,7 @@ class ResponseObj{
   MsgState message;
   ErrorState errorState;
   dynamic data;
-  ResponseObj({data,msgState,errorState});
+  ResponseObj({this.data,this.message,this.errorState});
 }
 enum MsgState{
   loading,

@@ -26,7 +26,7 @@ class _LoginFormState extends State<LoginForm> {
   //text: 'password'
   String email;
   String password;
-  Map<String, dynamic> loginDBody;
+  Map<String, String> loginDBody;
 
   
   @override

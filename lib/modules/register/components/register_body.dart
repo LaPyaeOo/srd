@@ -4,6 +4,8 @@ import 'package:srd_frame/modules/register/components/register_form.dart';
 import 'package:srd_frame/modules/register/components/register_header.dart';
 
 class RegisterBody extends StatelessWidget {
+  final GlobalKey<ScaffoldState>scaffoldKey;
+  const RegisterBody({Key key,this.scaffoldKey}): super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,7 +39,7 @@ class RegisterBody extends StatelessWidget {
                     'Complete your detail or \n continue with social media',
                     textAlign: TextAlign.center,
                   ),
-                  RegisterForm(),
+                  RegisterForm(scaffoldKey: this.scaffoldKey,),
                   SizedBox(
                     height: getScreenHeightRation(20.0),
                   ),

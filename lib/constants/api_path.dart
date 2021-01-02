@@ -6,6 +6,8 @@ const LOGIN_URL = API_URL + 'login';
 
 const REGISTER_URL = API_URL+'register';
 
+const PROFILE_URL = API_URL+'login/user';
+
 const USER_URL = API_URL+'user';
 
 //Login = http://testapi.eazytechmm.com/api/login

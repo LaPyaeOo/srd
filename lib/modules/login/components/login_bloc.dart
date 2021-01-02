@@ -7,12 +7,12 @@ import 'package:srd_frame/utils/services/shared_preferences.dart';
 class LoginBloc extends BaseRequest{
   PublishSubject<ResponseObj>loginController = PublishSubject();
 
-  Stream<ResponseObj>loginStream ()=> loginController;
+  Stream<ResponseObj>loginStream ()=> loginController.stream;
 
-  loginReq(Map<String, dynamic> dataMap){
-    postReq(url: LOGIN_URL, dataParameter: dataMap, dataCallback: (ResponseObj resObj){
+  loginReq(Map<String, String> dataMap){
+    postReq(LOGIN_URL, dataParameter: dataMap, dataCallback: (ResponseObj resObj){
       print('Data State =>=>=> ${resObj.data}');
-      SharedPrefService.setStringData(key: SharedPrefService.token, value: resObj.data["token"]);
+      SharedPrefService.setStringData(key: SharedPrefService.token, value:"Bearer "+resObj.data["token"]);
       loginController.sink.add(resObj);
     },errorCallback: (ResponseObj resObj){
       print('Error State =>=>=> ${resObj.data}');
