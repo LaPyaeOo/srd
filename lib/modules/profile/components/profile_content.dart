@@ -4,6 +4,7 @@ import 'package:srd_frame/config/size_config.dart';
 import 'package:srd_frame/config/themes.dart';
 import 'package:srd_frame/modules/login/login_view.dart';
 import 'package:srd_frame/modules/profile/components/profile_bloc.dart';
+import 'package:srd_frame/modules/profile/components/profile_object.dart';
 import 'package:srd_frame/utils/helpers/response_obj.dart';
 import 'package:srd_frame/widgets/post_widget.dart';
 import 'package:srd_frame/widgets/styling_button_widget.dart';
@@ -16,11 +17,10 @@ class ProfileContent extends StatefulWidget {
 
 class _ProfileContentState extends State<ProfileContent> {
 
-  ProfileBloc _profileBloc;
+   final _profileBloc = ProfileBloc();
 
   @override
   void initState() {
-    _profileBloc = ProfileBloc();
     _profileBloc.profileReq();
     super.initState();
   }
@@ -32,12 +32,11 @@ class _ProfileContentState extends State<ProfileContent> {
       child: ListView(
         children: [
           //buildProfileField(),
-          StreamBuilder<Object>(
+          StreamBuilder<ResponseObj>(
       stream: _profileBloc.profileStream(),
         initialData: ResponseObj(message: MsgState.loading),
             builder: (context, snapshot) {
-              ResponseObj resData = snapshot.data;
-              print(resData.message);
+              ResponseObj resData= snapshot.data;
               if(resData.message == MsgState.loading){
                 return Center(
                   child: Container(
@@ -72,7 +71,10 @@ class _ProfileContentState extends State<ProfileContent> {
                 );
               }
               else{
-                return buildProfileField();
+                ProfileObj profileData = resData.data;
+                print('ProfileData =>=>=> ${profileData.name}');
+                //String name = profileData.name;
+                return buildProfileField(name: profileData.name, email:  profileData.email);
               }
             }
           ),
@@ -125,7 +127,7 @@ class _ProfileContentState extends State<ProfileContent> {
     );
   }
 
-  Widget buildProfileField() {
+  Widget buildProfileField({String name, String email}) {
     return InkWell(
       onTap: () {},
       child: Container(
@@ -151,7 +153,7 @@ class _ProfileContentState extends State<ProfileContent> {
               height: getScreenHeightRation(5),
             ),
             Text(
-              'Mg Mg \n \n mgmg@gmail.com',
+              '$name \n \n $email',
               textAlign: TextAlign.center,
             ),
             SizedBox(height: getScreenHeightRation(20.0),),

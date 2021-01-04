@@ -54,18 +54,10 @@ class BaseRequest{
       responseObj.message =MsgState.loading;
       //Data receive
       if(dioResp.statusCode == 200){
-        if(dioResp.data['success'] == true){
-          responseObj.message = MsgState.data;
-          responseObj.data = dioResp.data['result'];
-          print('Data State 200 =>=>=> ${responseObj.data}');
-          dataCallback(responseObj);
-        }
-        else{
-          responseObj.message = MsgState.error;
-          responseObj.errorState = ErrorState.clientError;
-          print('Error State 200 =>=>=> ${responseObj.data}');
-          errorCallback(responseObj);
-        }
+        responseObj.message = MsgState.data;
+        responseObj.data = dioResp.data;
+        print('Data State 200 =>=>=> ${responseObj.data}');
+        dataCallback(responseObj);
       }
       //Error receive
       else{
