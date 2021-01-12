@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:srd_frame/config/size_config.dart';
@@ -9,6 +10,7 @@ class UserCircularAvt extends StatelessWidget {
   final String svgIcon;
   final String statusTxt;
   final File imageFile;
+  final String networkImage;
   final Function onUploadPhoto;
 
   const UserCircularAvt({
@@ -17,6 +19,7 @@ class UserCircularAvt extends StatelessWidget {
     this.imageFile,
     Key key,
     this.svgIcon = "assets/icons/User.svg",
+    this.networkImage,
   }) : super(key: key);
 
   @override
@@ -36,7 +39,12 @@ class UserCircularAvt extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         child: InkWell(
           onTap: onUploadPhoto,
-          child: imageFile != null ? Ink.image(image : FileImage(imageFile),fit: BoxFit.cover,): Container(
+          child: imageFile != null ? Ink.image(image: FileImage(imageFile),fit: BoxFit.cover,) : networkImage != null ? CachedNetworkImage(
+            imageUrl: networkImage,
+            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                CircularProgressIndicator(value: downloadProgress.progress),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ): Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

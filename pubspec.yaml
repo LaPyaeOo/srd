@@ -33,6 +33,7 @@ dependencies:
   rxdart: ^0.24.1
   flutter_svg: ^0.18.0
   image_picker: ^0.6.7+17
+  cached_network_image: ^2.5.0
   get:
 
 dev_dependencies:

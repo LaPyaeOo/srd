@@ -43,7 +43,13 @@ class _LoginFormState extends State<LoginForm> {
         });
       }
       if(resObj.message == MsgState.error){
-        AppUtils.showSnackBar(widget.scaffoldKey.currentState,bgColor: Colors.red,contentText: 'Something Wrong');
+        if(resObj.errorState == ErrorState.clientError){
+          print('Eroor ${resObj.data['result']}');
+          AppUtils.showSnackBar(widget.scaffoldKey.currentState,bgColor: Colors.red,contentText: resObj.data['result'].replaceAll(new RegExp('_'),' '));
+        }
+        else{
+          AppUtils.showSnackBar(widget.scaffoldKey.currentState,bgColor: Colors.red,contentText: 'Something Wrong');
+        }
         //Navigator.pushNamedAndRemoveUntil(context, LoginView.routeName, (route) => false);
       }
     });

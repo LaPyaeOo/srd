@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:srd_frame/config/size_config.dart';
 import 'package:srd_frame/config/themes.dart';
+import 'package:srd_frame/constants/api_path.dart';
 import 'package:srd_frame/modules/login/login_view.dart';
 import 'package:srd_frame/modules/profile/components/profile_bloc.dart';
 import 'package:srd_frame/modules/profile/components/profile_object.dart';
@@ -74,7 +75,7 @@ class _ProfileContentState extends State<ProfileContent> {
                 ProfileObj profileData = resData.data;
                 print('ProfileData =>=>=> ${profileData.name}');
                 //String name = profileData.name;
-                return buildProfileField(name: profileData.name, email:  profileData.email);
+                return buildProfileField(name: profileData.name, email:  profileData.email, profImage: profileData.image);
               }
             }
           ),
@@ -84,6 +85,9 @@ class _ProfileContentState extends State<ProfileContent> {
           Text(
             'Your posts',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+          ),
+          SizedBox(
+            height: getScreenHeightRation(10.0),
           ),
           Container(
             height: getScreenHeightRation(400.0),
@@ -127,9 +131,8 @@ class _ProfileContentState extends State<ProfileContent> {
     );
   }
 
-  Widget buildProfileField({String name, String email}) {
+  Widget buildProfileField({String name, String email, String profImage}) {
     return InkWell(
-      onTap: () {},
       child: Container(
         width: double.infinity,
         height: getScreenHeightRation(250.0),
@@ -145,7 +148,8 @@ class _ProfileContentState extends State<ProfileContent> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             UserCircularAvt(
-              svgIcon: 'assets/icons/User.svg',
+              networkImage: IMAGE_BASE_URL+profImage,
+              //svgIcon: 'assets/icons/User.svg',
               statusTxt: '',
               onUploadPhoto: () {},
             ),
