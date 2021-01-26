@@ -1,10 +1,10 @@
-class HomeObj {
+class HomeCatObj {
   bool success;
   List<CategoryOb> result;
 
-  HomeObj({this.success, this.result});
+  HomeCatObj({this.success, this.result});
 
-  HomeObj.fromJson(Map<String, dynamic> json) {
+  HomeCatObj.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     if (json['result'] != null) {
       result = new List<CategoryOb>();

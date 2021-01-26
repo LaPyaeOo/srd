@@ -1,14 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:srd_frame/config/size_config.dart';
 import 'package:srd_frame/config/themes.dart';
+import 'package:srd_frame/utils/helpers/null_checker.dart';
 
 class Post extends StatelessWidget {
   final Function onTap;
   final String postTitle;
   final String uploadDateTime;
+  final String image;
   final String postContent;
-  const Post({this.onTap,this.postTitle,this.postContent,this.uploadDateTime,Key key}): super(key: key);
+  const Post({this.onTap,this.postTitle,this.postContent,this.uploadDateTime,this.image,});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,10 +31,24 @@ class Post extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
-            child: Container(
+            child: NullEmptyChecker.checkVar(image)?Container(
               width: double.infinity,
               height: getScreenHeightRation(80.0),
               child: SvgPicture.asset('assets/icons/Plus_Icon.svg',color: custPrimaryColor,),
+            ):Container(
+              width: double.infinity,
+              height: getScreenHeightRation(80.0),
+              // decoration: BoxDecoration(
+              //   image: DecorationImage(image: NetworkImage(image)),
+              // ),
+              child: Center(
+                child: CachedNetworkImage(
+                  imageUrl: image,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      CircularProgressIndicator(value: downloadProgress.progress),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
             ),
           ),
           SizedBox(

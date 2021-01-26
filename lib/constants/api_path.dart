@@ -14,6 +14,8 @@ const IMAGE_BASE_URL = BASE_URL+'public';
 
 const CATEGORY_URL = API_URL + 'category/all';
 
+const PUBLIC_POST = API_URL + 'public/post';
+
 //userImage = /user/16019845915f7c584f95c3aalice-in-wonderland-2560x1600jpg.jpg
 //Login = http://testapi.eazytechmm.com/api/login
 //Register = http://testapi.eazytechmm.com/api/register

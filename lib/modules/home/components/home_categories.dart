@@ -29,7 +29,7 @@ class _HomeCatergoriesState extends State<HomeCatergories> {
       child: Container(
         height: getScreenHeightRation(60.0),
         child: StreamBuilder(
-          stream: _bloc.homeStream(),
+          stream: _bloc.homeCatStream(),
           initialData: ResponseObj(message: MsgState.loading),
           builder: (context, snapshot) {
             ResponseObj responseObj = snapshot.data;
@@ -73,7 +73,7 @@ class _HomeCatergoriesState extends State<HomeCatergories> {
   }
   @override
   void dispose() {
-    _bloc.homeCategoryRqClose();
+    _bloc.homeRqClose();
     super.dispose();
   }
 }
