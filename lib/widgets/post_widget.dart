@@ -8,10 +8,11 @@ import 'package:srd_frame/utils/helpers/null_checker.dart';
 class Post extends StatelessWidget {
   final Function onTap;
   final String postTitle;
+  final String postCategory;
   final String uploadDateTime;
   final String image;
   final String postContent;
-  const Post({this.onTap,this.postTitle,this.postContent,this.uploadDateTime,this.image,});
+  const Post({this.onTap,this.postTitle,this.postCategory,this.postContent,this.uploadDateTime,this.image,});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,26 +57,48 @@ class Post extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
-            child: Column(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  postTitle,
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      postTitle,
+                      style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    Text(
+                      uploadDateTime,
+                    ),
+                    SizedBox(
+                      height: getScreenHeightRation(10.0),
+                    ),
+                    Text(
+                      postContent,
+                    ),
+                  ],),
+                SizedBox(
+                  width: getScreenWidthRation(20.0),
+                ),
+                Container(
+                  padding: EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Color(0xFFFFECDF),
+                  ),
+                  child: Text(
+                    postCategory,
+                    style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                Text(
-                  uploadDateTime,
-                ),
-                SizedBox(
-                  height: getScreenHeightRation(10.0),
-                ),
-                Text(
-                  postContent,
-                ),
-              ],),
+              ],
+            ),
           )
         ],
       ),
